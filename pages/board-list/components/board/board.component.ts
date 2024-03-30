@@ -3,11 +3,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatListModule } from '@angular/material/list';
-import { MatRippleModule } from '@angular/material/core';
-import { MatDividerModule } from '@angular/material/divider';
-import { DatePipe } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ListComponent } from '../../../../shared/components/atom/list/list.component';
 
 export interface Section {
   name: string;
@@ -17,12 +14,12 @@ export interface Section {
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [RouterLink, MatMenuModule, MatButtonModule, MatIconModule, MatToolbarModule, MatListModule, MatRippleModule, MatDividerModule, DatePipe],
+  imports: [RouterLink, MatMenuModule, MatButtonModule, MatIconModule, MatToolbarModule, ListComponent],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss'
 })
 export class BoardComponent implements OnInit {
-  
+
   public name!: string | null;
   public folders: Section[] = [
     {
@@ -40,10 +37,9 @@ export class BoardComponent implements OnInit {
   ];
 
 
-  constructor(private route: ActivatedRoute) {}
-  
+  constructor(private route: ActivatedRoute) { }
+
   ngOnInit() {
     this.name = this.route.snapshot.paramMap.get('name');
   }
-
 }

@@ -3,7 +3,7 @@
     <mat-icon>campaign</mat-icon>
     <span>공지사항 등록</span>
   </button>
-  <button mat-menu-item>
+  <button mat-menu-item [routerLink]="['/board-list', name, 'post']">
     <mat-icon>edit_note</mat-icon>
     <span>글 작성</span>
   </button>
@@ -15,22 +15,14 @@
 
 <mat-toolbar>
   <button mat-icon-button color="primary" [routerLink]="['/board-list']">
-      <mat-icon>arrow_back_ios</mat-icon>
+    <mat-icon>arrow_back_ios</mat-icon>
   </button>
   <span class="toolbar-spacer"></span>
   <span>{{ name }}</span>
   <span class="toolbar-spacer"></span>
   <button mat-icon-button color="primary" [matMenuTriggerFor]="menu">
-      <mat-icon>more_vert</mat-icon>
+    <mat-icon>more_vert</mat-icon>
   </button>
 </mat-toolbar>
 
-<mat-list>
-  @for (folder of folders; track folder) {
-    <mat-list-item matRipple>
-      <div matListItemTitle>{{folder.name}}</div>
-      <div matListItemLine>{{folder.updated | date}}</div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-  }
-</mat-list>
+<app-list></app-list>

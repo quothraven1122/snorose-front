@@ -1,0 +1,19 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>제목</mat-label>
+    <input matInput>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>내용을 입력해주세요.</mat-label>
+    <textarea matInput></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput [value]="fileName" readonly placeholder="파일 선택...">
+    <button style="padding-right: 10px;" matSuffix mat-icon-button (click)="fileInput.click()" matTooltip="파일 업로드">
+      <mat-icon>upload_file</mat-icon>
+    </button>
+    <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)">
+  </mat-form-field>
+</form>

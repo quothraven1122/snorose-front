@@ -1,12 +1,26 @@
 table {
     width: 100%;
 }
-  
+
 .mat-mdc-form-field {
     font-size: 14px;
     width: 100%;
 }
-  
-td, th {
+
+td,
+th {
     width: 25%;
+}
+
+mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    /* 양 끝에 요소들을 정렬 */
+    align-items: center;
+    /* 세로 중앙 정렬 */
+}
+
+.toolbar-spacer {
+    flex: 1;
+    /* 남는 공간을 모두 차지 */
 }

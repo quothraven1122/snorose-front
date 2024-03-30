@@ -4,6 +4,11 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterLink } from '@angular/router';
 
 export interface UserData {
   id: string;
@@ -48,11 +53,13 @@ const NAMES: string[] = [
 @Component({
   selector: 'app-file',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule],
+  imports: [RouterLink, MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, MatButtonModule, MatMenuModule, MatIconModule, MatToolbarModule],
   templateUrl: './file.component.html',
   styleUrl: './file.component.scss'
 })
 export class FileComponent implements AfterViewInit {
+
+  public name!: string | null;
   public displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
   public dataSource: MatTableDataSource<UserData>;
 
@@ -61,7 +68,7 @@ export class FileComponent implements AfterViewInit {
 
   constructor() {
     // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
+    const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
 
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(users);

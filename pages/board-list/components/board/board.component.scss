@@ -1,0 +1,9 @@
+mat-toolbar {
+    display: flex;
+    justify-content: space-between; /* 양 끝에 요소들을 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+}
+
+.toolbar-spacer{
+    flex: 1; /* 남는 공간을 모두 차지 */
+}

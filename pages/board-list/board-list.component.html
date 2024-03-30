@@ -1,0 +1,41 @@
+<mat-tab-group>
+  <mat-tab label="First">
+      <mat-list>
+          <div mat-subheader>Folders</div>
+          @for (folder of folders; track folder) {
+            <mat-list-item matRipple [routerLink]="[folder.name]">
+              <mat-icon matListItemIcon>folder</mat-icon>
+              <div matListItemTitle>{{folder.name}}</div>
+              <div matListItemLine>{{folder.updated | date}}</div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          }
+      </mat-list>
+  </mat-tab>
+  <mat-tab label="Second">
+      <mat-list>
+          <div mat-subheader>Folders</div>
+          @for (folder of folders; track folder) {
+            <mat-list-item matRipple [routerLink]="[folder.name]">
+              <mat-icon matListItemIcon>folder</mat-icon>
+              <div matListItemTitle>{{folder.name}}</div>
+              <div matListItemLine>{{folder.updated | date}}</div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          }
+      </mat-list>
+  </mat-tab>
+  <mat-tab label="Third">
+      <mat-list>
+          <div mat-subheader>Folders</div>
+          @for (folder of folders; track folder) {
+            <mat-list-item matRipple [routerLink]="[folder.name]">
+              <mat-icon matListItemIcon>folder</mat-icon>
+              <div matListItemTitle>{{folder.name}}</div>
+              <div matListItemLine>{{folder.updated | date}}</div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          }
+      </mat-list>
+  </mat-tab>
+</mat-tab-group>

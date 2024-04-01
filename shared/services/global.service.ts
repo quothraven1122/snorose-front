@@ -5,6 +5,9 @@ import { DateService } from "./date.service";
 
 @Injectable({ providedIn: 'root' })
 export class GlobalService {
+
+    public point: number = 0;
+
     constructor(
         public dateService: DateService,
         public httpService: HttpService,

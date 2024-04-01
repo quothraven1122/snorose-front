@@ -10,6 +10,6 @@ export class DetailComponent {
   public currentDate!: string;
 
   constructor(public globalService: GlobalService) {
-    this.currentDate = this.globalService.dateService.getCurrentDate();
+    this.currentDate = this.globalService.dateService.getCurrentDateStr();
   }
 }

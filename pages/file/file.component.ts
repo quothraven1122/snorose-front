@@ -50,7 +50,7 @@ export class FileComponent {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(public globalService: GlobalService) {
-    this.date = this.globalService.dateService.getCurrentDate();
+    this.date = this.globalService.dateService.getCurrentDateStr();
     // Create 100 users
     const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1, this.date));
 

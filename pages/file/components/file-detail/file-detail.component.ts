@@ -11,6 +11,6 @@ export class FileDetailComponent {
   public name: string = 'filename.pdf';
 
   constructor(public globalService: GlobalService) {
-    this.currentDate = this.globalService.dateService.getCurrentDate();
+    this.currentDate = this.globalService.dateService.getCurrentDateStr();
   }
 }

@@ -5,8 +5,12 @@ import { Injectable } from '@angular/core';
 })
 export class DateService {
 
-  public getCurrentDate(): string {
+  public getCurrentDateStr(): string {
     return new Date().toLocaleString();
+  }
+
+  public getCurrentDate() {
+    return new Date();
   }
 
 }

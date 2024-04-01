@@ -1,12 +1,4 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatListModule } from '@angular/material/list';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatIconModule } from '@angular/material/icon';
-import { MatRippleModule } from '@angular/material/core';
-import { DatePipe } from '@angular/common';
-import { RouterLink } from '@angular/router';
 
 export interface Section {
   name: string;
@@ -15,13 +7,10 @@ export interface Section {
 
 @Component({
   selector: 'app-board-list',
-  standalone: true,
-  imports: [CommonModule, RouterLink, MatTabsModule, MatListModule, MatDividerModule, MatIconModule, DatePipe, MatRippleModule],
   templateUrl: './board-list.component.html',
   styleUrl: './board-list.component.scss'
 })
 export class BoardListComponent {
-  
   public folders: Section[] = [
     {
       name: 'Photos',
@@ -41,5 +30,4 @@ export class BoardListComponent {
     console.log('clickBoard');
 
   }
-
 }

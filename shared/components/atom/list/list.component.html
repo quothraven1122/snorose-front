@@ -1,9 +1,9 @@
 <mat-list>
-    @for (folder of folders; track folder) {
-      <mat-list-item matRipple>
-        <div matListItemTitle>{{folder.name}}</div>
-        <div matListItemLine>{{folder.updated | date}}</div>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-    }
+  @for (folder of folders; track folder) {
+  <mat-list-item matRipple>
+    <div matListItemTitle>{{folder.name}}</div>
+    <div matListItemLine>{{folder.updated | date}}</div>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+  }
 </mat-list>

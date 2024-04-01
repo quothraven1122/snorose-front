@@ -5,8 +5,6 @@ import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 
 @Component({
   selector: 'app-swiper',
-  standalone: true,
-  imports: [],
   templateUrl: './swiper.component.html',
   styleUrl: './swiper.component.scss'
 })
@@ -26,8 +24,7 @@ export class SwiperComponent implements AfterViewInit {
         el: ".swiper-pagination",
       },
     };
-    
+
     const swiper = new Swiper('.swiper', swiperParams);
   }
-
 }

@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { MatListModule } from '@angular/material/list';
-import { MatRippleModule } from '@angular/material/core';
-import { DatePipe } from '@angular/common';
 
 export interface Section {
   name: string;
@@ -10,13 +7,10 @@ export interface Section {
 
 @Component({
   selector: 'app-list',
-  standalone: true,
-  imports: [MatListModule, MatRippleModule, DatePipe],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
 export class ListComponent {
-
   public name!: string | null;
   public folders: Section[] = [
     {
@@ -32,5 +26,4 @@ export class ListComponent {
       updated: new Date('1/28/16'),
     },
   ];
-
 }

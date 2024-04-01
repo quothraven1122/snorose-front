@@ -1,14 +1,7 @@
-import { Component, AfterViewInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSort, MatSortModule } from '@angular/material/sort';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterLink } from '@angular/router';
+import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 export interface UserData {
   id: string;
@@ -52,12 +45,10 @@ const NAMES: string[] = [
 
 @Component({
   selector: 'app-file',
-  standalone: true,
-  imports: [RouterLink, MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, MatButtonModule, MatMenuModule, MatIconModule, MatToolbarModule],
   templateUrl: './file.component.html',
   styleUrl: './file.component.scss'
 })
-export class FileComponent implements AfterViewInit {
+export class FileComponent {
 
   public name!: string | null;
   public displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];

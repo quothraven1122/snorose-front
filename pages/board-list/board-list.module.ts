@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { BoardListComponent } from './board-list.component';
 import { BoardComponent } from './components/board/board.component';
 import { DetailComponent } from './components/detail/detail.component';

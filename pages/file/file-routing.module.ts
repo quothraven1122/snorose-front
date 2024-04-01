@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { FileComponent } from './file.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FileDetailComponent } from './components/file-detail/file-detail.component';
+import { PostComponent } from '../post/post.component';
 
 export const routes: Routes = [
   {
@@ -11,6 +12,10 @@ export const routes: Routes = [
   {
     path: ':id',
     component: FileDetailComponent
+  },
+  {
+    path: 'post/new',
+    component: PostComponent
   }
 ];
 

@@ -1,0 +1,48 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>SNOROSE</mat-card-title>
+    </mat-card-header>
+    <mat-divider class="divider"></mat-divider>
+    <mat-card-content align="center">
+      <div [formGroup]="loginForm" (keydown.enter)="onSignIn()" (submit)="onSignIn()">
+        <div class="inner-item">
+          <mat-form-field class="custom-form-field">
+            <mat-label>아이디</mat-label>
+            <input matInput formControlName="id" placeholder="아이디를 입력해 주세요">
+          </mat-form-field>
+        </div>
+        <div class="inner-item">
+          <mat-form-field class="custom-form-field">
+            <mat-label>비밀번호</mat-label>
+            <input matInput formControlName="password" placeholder="비밀번호를 입력해 주세요" [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button type="button" matSuffix (click)="hide = !hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+
+        @if (id?.invalid && (id?.dirty || id?.touched)) {
+        <div class="inner-item error-message">
+          <span>아이디를 입력해 주세요</span>
+        </div>
+        }
+        @if (password?.invalid && (password?.dirty || password?.touched)) {
+        <div class="inner-item error-message">
+          <span>비밀번호를 입력해 주세요</span>
+        </div>
+        }
+
+        <div class="inner-item">
+          <button class="custom-form-field" mat-raised-button (click)="onSignIn()">로그인</button>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <div class="container-bottom">
+        <button mat-button class="btn-bottom" (click)="onSignUp()">회원가입</button>
+        <button mat-button class="btn-bottom" (click)="onResetPassword()">비밀번호 초기화</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

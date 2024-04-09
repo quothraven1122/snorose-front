@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
+import { GlobalService } from '../../shared/services/global.service';
 
 export interface Section {
   name: string;
-  updated: Date;
 }
 
 @Component({
@@ -11,20 +11,50 @@ export interface Section {
   styleUrl: './board-list.component.scss'
 })
 export class BoardListComponent {
-  public folders: Section[] = [
+
+  public announcements: Section[] = [
     {
-      name: 'Photos',
-      updated: new Date('1/1/16'),
+      name: '명예의 전당',
     },
     {
-      name: 'Recipes',
-      updated: new Date('1/17/16'),
-    },
-    {
-      name: 'Work',
-      updated: new Date('1/28/16'),
+      name: '공지사항',
     },
   ];
+
+  public communityList: Section[] = [
+    {
+      name: '함박눈방'
+    },
+    {
+      name: '첫눈온방'
+    },
+    {
+      name: '만년설방'
+    }
+  ];
+
+  public departmentList: Section[] = [
+    {
+      name: '소프트웨어학부',
+    },
+    {
+      name: '문과대학',
+    },
+    {
+      name: '이과대학',
+    },
+    {
+      name: '공과대학',
+    },
+    {
+      name: '미술대학',
+    },
+    {
+      name: '음악대학',
+    },
+  ]
+
+  constructor(public globalService: GlobalService) { }
 
   public clickBoard(event: any) {
     console.log('clickBoard');

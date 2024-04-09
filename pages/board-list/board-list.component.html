@@ -1,25 +1,34 @@
-<mat-tab-group>
-  <mat-tab label="First">
+<mat-tab-group [style.height]="globalService.layoutService.getMainHeight()">
+  <mat-tab label="SNOROSE">
     <mat-list>
-      <div mat-subheader>Folders</div>
-      @for (folder of folders; track folder) {
-      <mat-list-item matRipple [routerLink]="[folder.name]">
+      <div mat-subheader>공지사항</div>
+      @for (announcement of announcements; track announcement) {
+      <mat-list-item matRipple [routerLink]="[announcement.name]">
         <mat-icon matListItemIcon>folder</mat-icon>
-        <div matListItemTitle>{{folder.name}}</div>
-        <div matListItemLine>{{folder.updated | date}}</div>
+        <div matListItemTitle>{{announcement.name}}</div>
+        <!-- <div matListItemLine>{{folder.updated | date}}</div> -->
       </mat-list-item>
       <mat-divider></mat-divider>
       }
     </mat-list>
   </mat-tab>
-  <mat-tab label="Second">
+  <mat-tab label="커뮤니티">
     <mat-list>
-      <div mat-subheader>Folders</div>
-      @for (folder of folders; track folder) {
-      <mat-list-item matRipple [routerLink]="[folder.name]">
-        <mat-icon matListItemIcon>folder</mat-icon>
-        <div matListItemTitle>{{folder.name}}</div>
-        <div matListItemLine>{{folder.updated | date}}</div>
+      <div mat-subheader>커뮤니티</div>
+      @for (community of communityList; track community) {
+      <mat-list-item matRipple [routerLink]="[community.name]">
+        <mat-icon matListItemIcon>ac_unit</mat-icon>
+        <div matListItemTitle>{{community.name}}</div>
+        <!-- <div matListItemLine>{{folder.updated | date}}</div> -->
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      }
+      <div mat-subheader>학과</div>
+      @for (department of departmentList; track department) {
+      <mat-list-item matRipple [routerLink]="[department.name]">
+        <mat-icon matListItemIcon>groups</mat-icon>
+        <div matListItemTitle>{{department.name}}</div>
+        <!-- <div matListItemLine>{{folder.updated | date}}</div> -->
       </mat-list-item>
       <mat-divider></mat-divider>
       }
@@ -27,12 +36,12 @@
   </mat-tab>
   <mat-tab label="Third">
     <mat-list>
-      <div mat-subheader>Folders</div>
-      @for (folder of folders; track folder) {
-      <mat-list-item matRipple [routerLink]="[folder.name]">
-        <mat-icon matListItemIcon>folder</mat-icon>
-        <div matListItemTitle>{{folder.name}}</div>
-        <div matListItemLine>{{folder.updated | date}}</div>
+      <div mat-subheader>커뮤니티</div>
+      @for (community of communityList; track community) {
+      <mat-list-item matRipple [routerLink]="[community.name]">
+        <mat-icon matListItemIcon>groups</mat-icon>
+        <div matListItemTitle>{{community.name}}</div>
+        <!-- <div matListItemLine>{{folder.updated | date}}</div> -->
       </mat-list-item>
       <mat-divider></mat-divider>
       }

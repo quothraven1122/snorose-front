@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SignInComponent } from '../../pages/membership/components/sign-in/sign-in.component';
+import { SignUpComponent } from '../../pages/membership/components/sign-up/sign-up.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/main',
+    redirectTo: '/signIn',
     pathMatch: 'full',
   },
   {
@@ -22,6 +24,18 @@ const routes: Routes = [
   {
     path: 'post',
     loadChildren: () => import('../../pages/post/post.module').then(m => m.PostModule),
+  },
+  {
+    path: 'membership',
+    loadChildren: () => import('../../pages/membership/membership.module').then(m => m.MembershipModule),
+  },
+  {
+    path: 'signIn',
+    component: SignInComponent
+  },
+  {
+    path: '/signUp',
+    component: SignUpComponent
   },
 ];
 

@@ -15,7 +15,7 @@ export const routes: Routes = [
     component: BoardComponent
   },
   {
-    path: ':name/post',
+    path: ':name/post/new',
     component: PostComponent
   },
   {

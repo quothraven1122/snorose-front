@@ -21,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     MatBottomSheetModule,
     ReactiveFormsModule,
+    MatStepperModule,
   ],
   exports: [
     SwiperComponent,
@@ -72,6 +74,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     MatBottomSheetModule,
     ReactiveFormsModule,
+    MatStepperModule,
   ]
 })
 export class SharedModule { }

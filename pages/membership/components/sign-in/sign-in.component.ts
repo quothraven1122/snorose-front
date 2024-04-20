@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GlobalService } from '../../../../shared/services/global.service';
+import { ISignInResponse } from '../../../../shared/http/membership.http';
 
 @Component({
   selector: 'app-sign-in',
@@ -13,7 +14,7 @@ export class SignInComponent {
   public hide = true;
 
   public loginForm: FormGroup = this.formBuilder.group({
-    id: ['', Validators.required],
+    loginId: ['', Validators.required],
     password: ['', Validators.required]
   });
 
@@ -31,19 +32,26 @@ export class SignInComponent {
     return this.loginForm.get('password');
   }
 
-  public onSignIn() {
-    // 로그인 버튼 클릭 시, 
-    // - 로그인 성공 시 -> main 페이지로
-    // - 로그인 실패 시 -> 실패 메세지 띄우기
-    console.log('loginForm^^', this.loginForm.value);
+  public onSignInClick() {
+    if (!this.loginForm.valid) return;
+
+    this.globalService.dalService.membershipHttp.signIn(this.loginForm.value).subscribe((response: ISignInResponse) => {
+      if (response.isSuccess) {
+        this.globalService.membershipService.setUser(response.result);
+        this.router.navigateByUrl('/main');
+      }
+      else {
+        this.globalService.httpService.snackBar('로그인 정보가 일치하지 않습니다. 다시 로그인 해주세요.');
+      }
+    });
   }
 
-  public onSignUp() {
+  public onSignUpClick() {
     // 회원가입 페이지로 이동
 
   }
 
-  public onResetPassword() {
+  public onResetPasswordClick() {
     // 비밀번호 초기화 페이지로 이동
   }
 }

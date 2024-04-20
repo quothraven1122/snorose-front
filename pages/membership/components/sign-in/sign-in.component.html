@@ -5,11 +5,11 @@
     </mat-card-header>
     <mat-divider class="divider"></mat-divider>
     <mat-card-content align="center">
-      <div [formGroup]="loginForm" (keydown.enter)="onSignIn()" (submit)="onSignIn()">
+      <div [formGroup]="loginForm" (keydown.enter)="onSignInClick()" (submit)="onSignInClick()">
         <div class="inner-item">
           <mat-form-field class="custom-form-field">
             <mat-label>아이디</mat-label>
-            <input matInput formControlName="id" placeholder="아이디를 입력해 주세요">
+            <input matInput formControlName="loginId" placeholder="아이디를 입력해 주세요">
           </mat-form-field>
         </div>
         <div class="inner-item">
@@ -34,14 +34,14 @@
         }
 
         <div class="inner-item">
-          <button class="custom-form-field" mat-raised-button (click)="onSignIn()">로그인</button>
+          <button class="custom-form-field" mat-raised-button (click)="onSignInClick()">로그인</button>
         </div>
       </div>
     </mat-card-content>
     <mat-card-actions align="end">
       <div class="container-bottom">
-        <button mat-button class="btn-bottom" (click)="onSignUp()">회원가입</button>
-        <button mat-button class="btn-bottom" (click)="onResetPassword()">비밀번호 초기화</button>
+        <button mat-button class="btn-bottom" (click)="onSignUpClick()">회원가입</button>
+        <button mat-button class="btn-bottom" (click)="onResetPasswordClick()">비밀번호 초기화</button>
       </div>
     </mat-card-actions>
   </mat-card>

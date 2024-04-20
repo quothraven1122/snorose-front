@@ -23,6 +23,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MatSelectModule } from '@angular/material/select';
   imports: [
     RouterLink,
     CommonModule,
+    HttpClientModule,
     MatIconModule,
     MatToolbarModule,
     MatListModule,
@@ -58,6 +60,7 @@ import { MatSelectModule } from '@angular/material/select';
     ListComponent,
     RouterLink,
     CommonModule,
+    HttpClientModule,
     MatIconModule,
     MatToolbarModule,
     MatListModule,

@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { FileComponent } from './file.component';
 import { SharedModule } from '../../shared/shared.module';
-import { FileDetailComponent } from './components/file-detail/file-detail.component';
 import { FileRoutingModule } from './file-routing.module';
+import { ReviewDetailComponent } from './components/review-detail/review-detail.component';
 
 
 
 @NgModule({
   declarations: [
     FileComponent,
-    FileDetailComponent
+    ReviewDetailComponent
   ],
   imports: [
     FileRoutingModule,

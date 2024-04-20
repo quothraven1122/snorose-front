@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { FileComponent } from './file.component';
 import { RouterModule, Routes } from '@angular/router';
-import { FileDetailComponent } from './components/file-detail/file-detail.component';
 import { PostComponent } from '../post/post.component';
+import { ReviewDetailComponent } from './components/review-detail/review-detail.component';
 
 export const routes: Routes = [
   {
@@ -11,7 +11,7 @@ export const routes: Routes = [
   },
   {
     path: ':id',
-    component: FileDetailComponent
+    component: ReviewDetailComponent
   },
   {
     path: 'post/new',

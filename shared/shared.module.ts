@@ -24,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     MatStepperModule,
     MatSelectModule,
+    MatProgressBarModule,
   ],
   exports: [
     SwiperComponent,
@@ -81,6 +83,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     MatStepperModule,
     MatSelectModule,
+    MatProgressBarModule,
   ]
 })
 export class SharedModule { }

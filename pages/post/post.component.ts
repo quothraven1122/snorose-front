@@ -88,7 +88,7 @@ export class PostComponent {
 
       const reviewData: IReviewCreateRequest = {
         // 게시글 정보
-        boardId: 0,
+        boardId: 5,
         userDisplay: '사용자 닉네임',
         category: '카테고리', // 없앨 듯
         title: this.reviewForm.value.title,

@@ -23,6 +23,8 @@ export class PostComponent {
   public Semester = Semester;
   public LectureType = LectureType;
 
+  public hasMidterm: boolean = false;
+  public hasFinalterm: boolean = false;
   public file: File | null = null;
   public fileName: string = '';
 
@@ -46,17 +48,19 @@ export class PostComponent {
     public globalService: GlobalService
   ) { }
 
-  private setHadMidterm(type: string): boolean {
-    let result = true;
+  private setHadMidterm(type: string) {
     switch (type) {
       case 'onlyMidterm':
-        result
+        this.hasMidterm = true;
         break;
       case 'onlyFinal':
-
+        this.hasFinalterm = true;
+        break;
+      case 'both':
+        this.hasMidterm = true;
+        this.hasFinalterm = true;
         break;
     }
-    return result;
   }
 
   public onFileSelected(event: any) {
@@ -76,15 +80,17 @@ export class PostComponent {
   public onClickSubmit(event: any) {
     console.log('button click');
     if (this.reviewForm.valid && this.lectureForm.valid) {
-      // 제출
+      // 제출!!
       console.log('review', this.reviewForm.value);
       console.log('lecture', this.lectureForm.value);
+
+      this.setHadMidterm(this.lectureForm.value.hadMidterm);
 
       const reviewData: IReviewCreateRequest = {
         // 게시글 정보
         boardId: 0,
         userDisplay: '사용자 닉네임',
-        category: '카테고리',
+        category: '카테고리', // 없앨 듯
         title: this.reviewForm.value.title,
         content: this.reviewForm.value.content,
 
@@ -94,8 +100,8 @@ export class PostComponent {
         classNumber: this.lectureForm.value.classNumber,
         lectureYear: this.lectureForm.value.lectureYear,
         semester: this.lectureForm.value.semester,
-        hasMidterm: this.lectureForm.value.hasMidterm,
-        hasFinalterm: this.lectureForm.value.hasFinalterm,
+        hasMidterm: this.hasMidterm,
+        hasFinalterm: this.hasFinalterm,
         lectureType: this.lectureForm.value.lectureType,
         isPF: this.lectureForm.value.isPF,
 
@@ -105,7 +111,7 @@ export class PostComponent {
       };
 
 
-      // this.globalService.dalService.reviewHttp.create(reviewData).subscribe((response: IReviewCreateResponse) => { 
+      // this.globalService.dalService.reviewHttp.create(reviewData).subscribe((response: IReviewCreateResponse) => {
       //   console.log('리뷰 작성 성공', response);
       // });
     }

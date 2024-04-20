@@ -33,25 +33,25 @@
       <!-- ID Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+        <td mat-cell *matCellDef="let row" mat-ripple> {{row.id}} </td>
       </ng-container>
 
       <!-- title Column -->
       <ng-container matColumnDef="title">
         <th mat-header-cell *matHeaderCellDef> 제목 </th>
-        <td mat-cell *matCellDef="let row"> {{row.title}} </td>
+        <td mat-cell *matCellDef="let row" mat-ripple> {{row.title}} </td>
       </ng-container>
 
       <!-- writer Column -->
       <ng-container matColumnDef="writer">
         <th mat-header-cell *matHeaderCellDef> 작성자 </th>
-        <td mat-cell *matCellDef="let row"> {{row.writer}} </td>
+        <td mat-cell *matCellDef="let row" mat-ripple> {{row.writer}} </td>
       </ng-container>
 
       <!-- write_date Column -->
       <ng-container matColumnDef="write_date">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> 작성일 </th>
-        <td mat-cell *matCellDef="let row"> {{row.write_date}} </td>
+        <td mat-cell *matCellDef="let row" mat-ripple> {{row.write_date}} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

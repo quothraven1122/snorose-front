@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { GlobalService } from '../../shared/services/global.service';
+import { Router } from '@angular/router';
 
 export interface FileData {
   id: number;
@@ -49,7 +50,10 @@ export class FileComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(public globalService: GlobalService) {
+  constructor(
+    private router: Router,
+    public globalService: GlobalService
+  ) {
     this.date = this.globalService.dateService.getCurrentDateStr();
     // Create 100 users
     const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1, this.date));
@@ -63,7 +67,7 @@ export class FileComponent {
     this.dataSource.sort = this.sort;
   }
 
-  applyFilter(event: Event) {
+  public applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
@@ -71,6 +75,12 @@ export class FileComponent {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  public onNaviagateClick(fileData: FileData) {
+    this.router.navigate([`/${fileData.id}`], { queryParams: { data: fileData } });
+  }
+
+
 }
 
 function createNewUser(id: number, date: string): FileData {

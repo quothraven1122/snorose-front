@@ -11,13 +11,14 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 export class SignUpComponent {
 
   /**
-   * 이름, 이메일, 비밀번호, 비밀번호 확인
+   * 이름, 아이디, 이메일, 비밀번호, 비밀번호 확인
    * 닉네임, 전공, 학번, 생일
    * 학생증 사진
    */
 
   public firstFormGroup = this._formBuilder.group({
     name: ['', Validators.required],
+    loginId: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
   });

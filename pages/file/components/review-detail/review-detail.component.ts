@@ -23,6 +23,8 @@ export class ReviewDetailComponent implements OnInit {
   public isPF: boolean = false;
   public fileName: string = '파일 이름.pdf';
 
+  public isLoading = false;
+
   constructor(
     private router: Router,
     public route: ActivatedRoute,
@@ -30,6 +32,7 @@ export class ReviewDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.isLoading = true;
     this.route.paramMap.subscribe(params => {
       if (params.get('id') == null) {
         this.router.navigateByUrl('**');
@@ -50,6 +53,7 @@ export class ReviewDetailComponent implements OnInit {
       //     this.lectureType = response.result.lectureType;
       //     this.isPF = response.result.isPF;
       //     this.fileName = response.result.fileName;
+      //     this.isLoading = false;
       //   }
       // })
     });

@@ -1,3 +1,7 @@
+@if (isLoading) {
+<mat-progress-bar mode="buffer"></mat-progress-bar>
+}
+@else {
 <mat-card class="example-card">
   <mat-card-header>
     <mat-card-title>{{ title }}</mat-card-title>
@@ -28,3 +32,4 @@
 
   </mat-card-footer>
 </mat-card>
+}

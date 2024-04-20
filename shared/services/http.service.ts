@@ -1,11 +1,64 @@
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { environment } from "../../src/environments/environment";
+import { Observable, catchError } from "rxjs";
+
+export interface IParams {
+  [param: string]: string | string[]
+}
+
+export const BASE_URL = environment.base_url;
 
 @Injectable({ providedIn: 'root' })
 export class HttpService {
 
-  constructor(private _snackBar: MatSnackBar) {
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar) { }
 
+  public Delete(endPoint: string, data?: any, header?: any): Observable<any> {
+    return this.http.delete(`${BASE_URL}${endPoint}`, data)
+      .pipe(catchError(this.handleError("Delete")));
+  }
+
+  public Post(endPoint: string, data: any, header?: any): Observable<any> {
+    return this.http.post(`${BASE_URL}${endPoint}`, data, header)
+      .pipe(catchError(this.handleError("Post", data)));
+  }
+
+  public Put(endPoint: string, data: any, header?: any): Observable<any> {
+    return this.http.put(`${BASE_URL}${endPoint}`, data, header)
+      .pipe(catchError(this.handleError("Put", data)));
+  }
+
+  public Patch(endPoint: string, data: any, header?: any): Observable<any> {
+    return this.http.patch(`${BASE_URL}${endPoint}`, data, header)
+      .pipe(catchError(this.handleError("Patch", data)));
+  }
+
+  public Get(endPoint: string, params?: IParams, header?: any): Observable<any> {
+    let httpParams = new HttpParams();
+
+    if (params) {
+      Object.keys(params).forEach(key => {
+        if (Array.isArray(params[key])) {
+          (params[key] as string[]).forEach(value => {
+            httpParams = httpParams.append(key, value);
+          });
+        }
+        else {
+          httpParams = httpParams.set(key, (params[key] as string));
+        }
+      });
+    }
+
+    return this.http.get(`${BASE_URL}${endPoint}`, { params: httpParams })
+      .pipe(catchError(this.handleError("Get")));
+  }
+
+  private handleError<T>(operation = "operation", result?: T) {
+    return (error: any): any => {
+      this.snackBar(error.message, "ERROR");
+    };
   }
 
   public snackBar(text: string, undo: string = "", duration: number = 2000) {

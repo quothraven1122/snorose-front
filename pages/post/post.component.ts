@@ -7,7 +7,7 @@ import { IReviewCreateRequest, IReviewCreateResponse, LectureType, Semester } fr
  * 제목, 내용, 작성자
  * 
  * - 강의 정보
- * 강의 이름, 강의 교수님, 년도, 학기, 중간/기말 여부, 강의 타입, pf 여부
+ * 강의 이름, 강의 교수님, 년도, 학기, 강의 타입, 중간/기말 여부, pf 여부
  * 
  * - 족보 정보
  * 파일 path, 파일 이름

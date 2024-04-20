@@ -47,8 +47,7 @@ export class SignInComponent {
   }
 
   public onSignUpClick() {
-    // 회원가입 페이지로 이동
-
+    this.router.navigateByUrl('/membership/signup');
   }
 
   public onResetPasswordClick() {

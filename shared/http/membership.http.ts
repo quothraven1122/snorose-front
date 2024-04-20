@@ -44,7 +44,7 @@ export interface ISignInResponse extends IBaseResponse<ISingInData> { }
 
 
 export interface IMembershipHttp {
-  signUp(request: ISignUpRequest): Observable<ISignInResponse>;
+  signUp(request: ISignUpRequest): Observable<ISignUpResponse>;
   signIn(request: ISignInRequest): Observable<ISignInResponse>;
 }
 
@@ -52,7 +52,7 @@ export class MembershipHttp implements IMembershipHttp {
 
   constructor(private readonly httpService: HttpService) { }
 
-  public signUp(request: ISignUpRequest): Observable<ISignInResponse> {
+  public signUp(request: ISignUpRequest): Observable<ISignUpResponse> {
     return this.httpService.Post(`/v1/users/register`, request);
   }
 

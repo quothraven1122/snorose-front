@@ -33,21 +33,21 @@
     <mat-form-field appearance="outline">
       <mat-label>학기</mat-label>
       <mat-select formControlName="semester">
-        <mat-option value="FIRST">1학기</mat-option>
-        <mat-option value="SECOND">2학기</mat-option>
-        <mat-option value="SUMMER">여름학기</mat-option>
-        <mat-option value="WINTER">겨울학기</mat-option>
-        <mat-option value="OTHER">기타</mat-option>
+        <mat-option [value]="Semester.First">1학기</mat-option>
+        <mat-option [value]="Semester.Second">2학기</mat-option>
+        <mat-option [value]="Semester.Summer">여름학기</mat-option>
+        <mat-option [value]="Semester.Winter">겨울학기</mat-option>
+        <mat-option [value]="Semester.Other">기타</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>강의 타입</mat-label>
       <mat-select formControlName="lectureType">
-        <mat-option value="MAJOR_REQUIRED">전공필수</mat-option>
-        <mat-option value="MAJOR_ELECTIVE">전공선택</mat-option>
-        <mat-option value="GENERAL_REQUIRED">교양 필수</mat-option>
-        <mat-option value="GENERAL_ELECTIVE배">교양 선택</mat-option>
-        <mat-option value="OTHER">기타</mat-option>
+        <mat-option [value]="LectureType.MajorRequired">전공필수</mat-option>
+        <mat-option [value]="LectureType.MajorElective">전공선택</mat-option>
+        <mat-option [value]="LectureType.GeneralRequired">교양 필수</mat-option>
+        <mat-option [value]="LectureType.GeneralElective">교양 선택</mat-option>
+        <mat-option [value]="LectureType.Other">기타</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field appearance="outline">

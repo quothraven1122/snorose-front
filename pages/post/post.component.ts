@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { GlobalService } from '../../shared/services/global.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IReviewCreateRequest, IReviewCreateResponse, LectureType, Semester } from '../../shared/http/review.http';
 
 /**
  * 제목, 내용, 작성자
@@ -19,6 +20,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class PostComponent {
 
+  public Semester = Semester;
+  public LectureType = LectureType;
+
+  public file: File | null = null;
   public fileName: string = '';
 
   public reviewForm: FormGroup = this.formBuilder.group({
@@ -36,12 +41,23 @@ export class PostComponent {
     file: ['', Validators.required]
   })
 
-
-
   constructor(
     private formBuilder: FormBuilder,
     public globalService: GlobalService
   ) { }
+
+  private setHadMidterm(type: string): boolean {
+    let result = true;
+    switch (type) {
+      case 'onlyMidterm':
+        result
+        break;
+      case 'onlyFinal':
+
+        break;
+    }
+    return result;
+  }
 
   public onFileSelected(event: any) {
     const file: File = event.target.files[0];
@@ -52,6 +68,7 @@ export class PostComponent {
     }
 
     if (file) {
+      this.file = file;
       this.fileName = file.name;
     }
   }
@@ -62,6 +79,35 @@ export class PostComponent {
       // 제출
       console.log('review', this.reviewForm.value);
       console.log('lecture', this.lectureForm.value);
+
+      const reviewData: IReviewCreateRequest = {
+        // 게시글 정보
+        boardId: 0,
+        userDisplay: '사용자 닉네임',
+        category: '카테고리',
+        title: this.reviewForm.value.title,
+        content: this.reviewForm.value.content,
+
+        // 강의 정보
+        lectureName: this.lectureForm.value.lectureName,
+        professor: this.lectureForm.value.professor,
+        classNumber: this.lectureForm.value.classNumber,
+        lectureYear: this.lectureForm.value.lectureYear,
+        semester: this.lectureForm.value.semester,
+        hasMidterm: this.lectureForm.value.hasMidterm,
+        hasFinalterm: this.lectureForm.value.hasFinalterm,
+        lectureType: this.lectureForm.value.lectureType,
+        isPF: this.lectureForm.value.isPF,
+
+        // 파일 정보
+        filePath: 'this.file',
+        fileName: this.fileName,
+      };
+
+
+      // this.globalService.dalService.reviewHttp.create(reviewData).subscribe((response: IReviewCreateResponse) => { 
+      //   console.log('리뷰 작성 성공', response);
+      // });
     }
     else {
       this.globalService.httpService.snackBar('입력하지 않은 필드가 있습니다. 모두 입력 후, 제출해 주세요');

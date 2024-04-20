@@ -11,7 +11,7 @@ export class HttpService {
   public snackBar(text: string, undo: string = "", duration: number = 2000) {
     this._snackBar.open(text, undo, {
       duration: duration,
-      horizontalPosition: "right",
+      horizontalPosition: "center",
       verticalPosition: "top",
     });
   }

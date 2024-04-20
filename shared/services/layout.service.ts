@@ -4,9 +4,9 @@ import { Injectable } from "@angular/core";
 export class LayoutService {
 
     public bodyHeight!: string;
-    
+
     public getMainHeight() {
-        this.bodyHeight = `${window.innerHeight - 120}px`;
+        this.bodyHeight = `${window.innerHeight - 128}px`;
         return this.bodyHeight;
     }
 

@@ -5,7 +5,7 @@
       <div class="p-10">
         <mat-form-field appearance="outline">
           <mat-label>이름</mat-label>
-          <input matInput placeholder="ex. 홍길동" formControlName="name" required>
+          <input matInput placeholder="ex. 홍길동" formControlName="userName" required>
         </mat-form-field>
       </div>
       <div class="p-10">
@@ -29,7 +29,7 @@
       <div class="p-10">
         <mat-form-field appearance="outline">
           <mat-label>비밀번호 확인</mat-label>
-          <input matInput placeholder="6~11자 사이로 작성해 주세요" formControlName="password" required>
+          <input matInput placeholder="6~11자 사이로 작성해 주세요" formControlName="checkedPassword" required>
         </mat-form-field>
       </div>
       <div>
@@ -49,22 +49,23 @@
       <div class="p-10">
         <mat-form-field appearance="outline">
           <mat-label>전공</mat-label>
-          <mat-select>
-            <mat-option value="one">First option</mat-option>
-            <mat-option value="two">Second option</mat-option>
+          <mat-select formControlName="major">
+            @for (major of majorList; track $index) {
+            <mat-option [value]="major">{{ major }}</mat-option>
+            }
           </mat-select>
         </mat-form-field>
       </div>
       <div class="p-10">
         <mat-form-field appearance="outline">
           <mat-label>학번</mat-label>
-          <input matInput formControlName="studentId" placeholder="학번 전체를 작성해 주세요" required>
+          <input matInput formControlName="studentNumber" placeholder="학번 전체를 작성해 주세요" required>
         </mat-form-field>
       </div>
       <div class="p-10">
         <mat-form-field appearance="outline">
           <mat-label>생일</mat-label>
-          <input matInput [matDatepicker]="picker" required>
+          <input matInput [matDatepicker]="picker" formControlName="birthday" required>
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
@@ -76,20 +77,12 @@
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="thirdFormGroup">
-    <form [formGroup]="thirdFormGroup">
-      <ng-template matStepLabel>Done</ng-template>
-      <div class="p-10">
-        <mat-form-field appearance="outline">
-          <mat-label>학생증, 포털 사진</mat-label>
-          <input matInput formControlName="studentCard" placeholder="4~6자 사이로 작성해 주세요" required>
-        </mat-form-field>
-      </div>
-      <p>You are now done.</p>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">회원가입 완료</button>
-      </div>
-    </form>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="onSignUpClick($event)">회원가입 완료</button>
+    </div>
   </mat-step>
 </mat-stepper>

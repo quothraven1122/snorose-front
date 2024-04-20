@@ -65,7 +65,7 @@ export class HttpService {
     this._snackBar.open(text, undo, {
       duration: duration,
       horizontalPosition: "center",
-      verticalPosition: "top",
+      verticalPosition: "bottom",
     });
   }
 

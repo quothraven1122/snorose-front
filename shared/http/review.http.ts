@@ -67,9 +67,10 @@ export interface IReviewUpdateRequest {
 export interface IReviewListResponse extends IBaseResponse<Array<{
   postId: number,
   title: string;
+  writer: string;
+  createdAt: string;
   likeCount: number;
   viewCount: number;
-  createdAt: string;
 }>> { }
 
 export interface IReviewGetData {

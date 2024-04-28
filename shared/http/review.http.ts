@@ -38,7 +38,7 @@ export interface IReviewCreateRequest {
   isPF: boolean;
 
   // 파일 정보
-  filePath: string;
+  filePath: string | null;
   fileName: string;
 }
 
@@ -65,9 +65,9 @@ export interface IReviewUpdateRequest {
 }
 
 export interface IReviewListResponse extends IBaseResponse<Array<{
+  userDisplay: string;
   postId: number,
   title: string;
-  writer: string;
   createdAt: string;
   likeCount: number;
   viewCount: number;
@@ -103,8 +103,8 @@ export interface IReviewCreateResponse extends IBaseResponse<{ postId: number; }
 export interface IReviewUpdateResponse extends IBaseResponse<{ postId: number; }> { }
 
 export interface IReviewHttp {
-  getList(page: number): Observable<IReviewListResponse>;
-  getDetail(boardId: number, postId: number): Observable<IReviewDetailResponse>;
+  getList(boardId: number, page: number): Observable<IReviewListResponse>;
+  getDetail(postId: number): Observable<IReviewDetailResponse>;
   create(request: IReviewCreateRequest): Observable<IReviewCreateResponse>;
   update(postId: number, request: IReviewUpdateRequest): Observable<IReviewUpdateResponse>;
 }
@@ -113,20 +113,20 @@ export class ReviewHttp implements IReviewHttp {
 
   constructor(private readonly httpService: HttpService) { }
 
-  public getList(page: number): Observable<IReviewListResponse> {
-    return this.httpService.Get(`/api/v1/reviews/list/${page}`);
+  public getList(boardId: number, page: number): Observable<IReviewListResponse> {
+    return this.httpService.Get(`/v1/reviews/${boardId}/list/${page}`);
   }
 
-  public getDetail(boardId: number, postId: number): Observable<IReviewDetailResponse> {
-    return this.httpService.Get(`/api/v1/reviews/${boardId}/review/${postId}`);
+  public getDetail(postId: number): Observable<IReviewDetailResponse> {
+    return this.httpService.Get(`/v1/reviews/${postId}`);
   }
 
   public create(request: IReviewCreateRequest): Observable<IReviewCreateResponse> {
-    return this.httpService.Post(`/api/v1/reviews/review`, request);
+    return this.httpService.Post(`/v1/reviews/review`, request);
   }
 
   public update(postId: number, request: IReviewUpdateRequest): Observable<IReviewUpdateResponse> {
-    return this.httpService.Patch(`/api/v1/reviews/${postId}`, request);
+    return this.httpService.Patch(`/v1/reviews/${postId}`, request);
   }
 
 }

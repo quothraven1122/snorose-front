@@ -38,24 +38,24 @@ export class ReviewDetailComponent implements OnInit {
         this.router.navigateByUrl('**');
       }
 
-      // this.globalService.dalService.reviewHttp.getDetail(5, Number(params.get('id'))).subscribe((response: IReviewDetailResponse) => {
-      //   if (response.isSuccess) {
-      //     console.log('리뷰 상세 내역', response);
-      //     this.title = response.result.title;
-      //     this.userDisplay = response.result.userDisplay;
-      //     this.createdAt = response.result.createdAt;
-      //     this.content = response.result.content;
-      //     this.lectureName = response.result.lectureName;
-      //     this.professor = response.result.professor;
-      //     this.classNumber = response.result.classNumber;
-      //     this.lectureYear = response.result.lectureYear;
-      //     this.semester = response.result.semester;
-      //     this.lectureType = response.result.lectureType;
-      //     this.isPF = response.result.isPF;
-      //     this.fileName = response.result.fileName;
-      //     this.isLoading = false;
-      //   }
-      // })
+      this.globalService.dalService.reviewHttp.getDetail(Number(params.get('id'))).subscribe((response: IReviewDetailResponse) => {
+        if (response.isSuccess) {
+          console.log('리뷰 상세 내역', response);
+          this.title = response.result.title;
+          this.userDisplay = response.result.userDisplay;
+          this.createdAt = response.result.createdAt;
+          this.content = response.result.content;
+          this.lectureName = response.result.lectureName;
+          this.professor = response.result.professor;
+          this.classNumber = response.result.classNumber;
+          this.lectureYear = response.result.lectureYear;
+          this.semester = response.result.semester;
+          this.lectureType = response.result.lectureType;
+          this.isPF = response.result.isPF;
+          this.fileName = response.result.fileName;
+          this.isLoading = false;
+        }
+      })
     });
   }
 }

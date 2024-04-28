@@ -53,11 +53,11 @@ export class MembershipHttp implements IMembershipHttp {
   constructor(private readonly httpService: HttpService) { }
 
   public signUp(request: ISignUpRequest): Observable<ISignUpResponse> {
-    return this.httpService.Post(`/v1/users/register`, request);
+    return this.httpService.PostWithoutToken(`/v1/users/register`, request);
   }
 
   public signIn(request: ISignInRequest): Observable<ISignInResponse> {
-    return this.httpService.Post(`/v1/users/login`, request);
+    return this.httpService.PostWithoutToken(`/v1/users/login`, request);
   }
 
 }

@@ -1,8 +1,9 @@
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { environment } from "../../src/environments/environment";
 import { Observable, catchError } from "rxjs";
+import { MembershipService } from "./membership.service";
 
 export interface IParams {
   [param: string]: string | string[]
@@ -13,7 +14,12 @@ export const BASE_URL = environment.base_url;
 @Injectable({ providedIn: 'root' })
 export class HttpService {
 
-  constructor(private http: HttpClient, private _snackBar: MatSnackBar) { }
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private membershipService: MembershipService) { }
+
+  public PostWithoutToken(endPoint: string, data: any, header?: any): Observable<any> {
+    return this.http.post(`${BASE_URL}${endPoint}`, data)
+      .pipe(catchError(this.handleError("Post", data)));
+  }
 
   public Delete(endPoint: string, data?: any, header?: any): Observable<any> {
     return this.http.delete(`${BASE_URL}${endPoint}`, data)
@@ -21,18 +27,30 @@ export class HttpService {
   }
 
   public Post(endPoint: string, data: any, header?: any): Observable<any> {
-    return this.http.post(`${BASE_URL}${endPoint}`, data, header)
-      .pipe(catchError(this.handleError("Post", data)));
+    return this.http.post(`${BASE_URL}${endPoint}`, data, {
+      headers: new HttpHeaders({
+        Authorization:
+          `Bearer ${this.membershipService.data.accessToken}`
+      })
+    }).pipe(catchError(this.handleError("Post", data)));
   }
 
   public Put(endPoint: string, data: any, header?: any): Observable<any> {
-    return this.http.put(`${BASE_URL}${endPoint}`, data, header)
-      .pipe(catchError(this.handleError("Put", data)));
+    return this.http.put(`${BASE_URL}${endPoint}`, data, {
+      headers: new HttpHeaders({
+        Authorization:
+          `Bearer ${this.membershipService.data.accessToken}`
+      })
+    }).pipe(catchError(this.handleError("Put", data)));
   }
 
   public Patch(endPoint: string, data: any, header?: any): Observable<any> {
-    return this.http.patch(`${BASE_URL}${endPoint}`, data, header)
-      .pipe(catchError(this.handleError("Patch", data)));
+    return this.http.patch(`${BASE_URL}${endPoint}`, data, {
+      headers: new HttpHeaders({
+        Authorization:
+          `Bearer ${this.membershipService.data.accessToken}`
+      })
+    }).pipe(catchError(this.handleError("Patch", data)));
   }
 
   public Get(endPoint: string, params?: IParams, header?: any): Observable<any> {
@@ -51,8 +69,12 @@ export class HttpService {
       });
     }
 
-    return this.http.get(`${BASE_URL}${endPoint}`, { params: httpParams })
-      .pipe(catchError(this.handleError("Get")));
+    return this.http.get(`${BASE_URL}${endPoint}`, {
+      params: httpParams, headers: new HttpHeaders({
+        Authorization:
+          `Bearer ${this.membershipService.data.accessToken}`
+      })
+    }).pipe(catchError(this.handleError("Get")));
   }
 
   private handleError<T>(operation = "operation", result?: T) {

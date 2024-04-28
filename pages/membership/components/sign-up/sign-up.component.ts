@@ -62,15 +62,19 @@ export class SignUpComponent {
       birthday: this.globalService.dateService.getBirthdayString(this.secondFormGroup.value.birthday as Date)
     };
 
+    console.log('signUpData', signUpData);
+
     this.globalService.dalService.membershipHttp.signUp(signUpData).subscribe((response: ISignUpResponse) => {
+      console.log('response^^', response);
       if (response.isSuccess) {
         this.globalService.httpService.snackBar(`회원가입을 성공했습니다. 로그인 해주세요.`);
         this.router.navigateByUrl('/signIn');
       }
       else {
+        console.log('회원가입 실패!');
         this.globalService.httpService.snackBar(`${response.message} 다시 회원가입 해주세요.`);
       }
-    })
+    });
 
   }
 

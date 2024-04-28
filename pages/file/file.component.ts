@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { GlobalService } from '../../shared/services/global.service';
@@ -6,9 +6,9 @@ import { merge, startWith, switchMap, map } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 
 export interface FileData {
+  userDisplay: string;
   postId: number,
   title: string;
-  writer: string;
   createdAt: string;
   likeCount: number;
   viewCount: number;
@@ -19,12 +19,12 @@ export interface FileData {
   templateUrl: './file.component.html',
   styleUrl: './file.component.scss'
 })
-export class FileComponent {
+export class FileComponent implements AfterViewInit {
 
-  public displayedColumns: string[] = ['postId', 'title', 'likeCount', 'createdAt'];
+  public displayedColumns: string[] = ['postId', 'title', 'userDisplay', 'createdAt'];
   public dataSource = new MatTableDataSource<FileData>([]);
 
-  public isLoadingResults: boolean = false;
+  public isLoadingResults: boolean = true;
   public resultsLength: number = 0;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -39,21 +39,23 @@ export class FileComponent {
     // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
 
-    console.log('paginator pageIndex', this.paginator.pageIndex);
-
     merge(this.sort.sortChange, this.paginator.page).pipe(
       startWith({}),
       switchMap(() => {
         this.isLoadingResults = true;
-        return this.globalService.dalService.reviewHttp.getList(this.paginator.pageIndex)
+        //console.log('ngAfterViewInit paginator pageIndex', this.paginator.pageIndex);
+        console.log('paginator', this.paginator);
+        return this.globalService.dalService.reviewHttp.getList(1, this.paginator.pageIndex);
       }),
-      map((data) => {
-        // Flip flag to show that loading has finished.
+      map((data) => { // Flip flag to show that loading has finished.
         this.isLoadingResults = false;
-        this.resultsLength = data ? data.result.length : 0;
+        this.resultsLength = 13; //data ? data.result.length : 0; 총 데이터 개수 알려주면 됨!!
         return data ? data.result : [];
       }),
-    ).subscribe(data => (this.dataSource.data = data));
+    ).subscribe(data => {
+      this.dataSource.data = data
+      console.log('ngAfterViewInit paginator data', data);
+    });
   }
 
   public applyFilter(event: Event) {

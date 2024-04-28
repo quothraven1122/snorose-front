@@ -23,11 +23,20 @@
       <input matInput formControlName="professor">
     </mat-form-field>
     <mat-form-field appearance="outline">
+      <mat-label>분반</mat-label>
+      <mat-select formControlName="classNumber">
+        <mat-option value="1">1분반</mat-option>
+        <mat-option value="2">2분반</mat-option>
+        <mat-option value="3">3분반</mat-option>
+        <mat-option value="4">4분반</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>년도</mat-label>
       <mat-select formControlName="lectureYear">
-        <mat-option value="option1">2020</mat-option>
-        <mat-option value="option2">2019</mat-option>
-        <mat-option value="option3">2018</mat-option>
+        <mat-option value="2020">2020</mat-option>
+        <mat-option value="2019">2019</mat-option>
+        <mat-option value="2018">2018</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field appearance="outline">

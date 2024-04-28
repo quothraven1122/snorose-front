@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { GlobalService } from '../../shared/services/global.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IReviewCreateRequest, IReviewCreateResponse, LectureType, Semester } from '../../shared/http/review.http';
+import { Router } from '@angular/router';
 
 /**
  * 제목, 내용, 작성자
@@ -35,6 +36,7 @@ export class PostComponent {
   public lectureForm: FormGroup = this.formBuilder.group({
     lectureName: ['', Validators.required],
     professor: ['', Validators.required],
+    classNumber: ['', Validators.required],
     lectureYear: ['', Validators.required],
     semester: ['', Validators.required],
     lectureType: ['', Validators.required],
@@ -44,6 +46,7 @@ export class PostComponent {
   })
 
   constructor(
+    private router: Router,
     private formBuilder: FormBuilder,
     public globalService: GlobalService
   ) { }
@@ -88,17 +91,17 @@ export class PostComponent {
 
       const reviewData: IReviewCreateRequest = {
         // 게시글 정보
-        boardId: 5,
+        boardId: 1,
         userDisplay: '사용자 닉네임',
-        category: '카테고리', // 없앨 듯
+        category: '테스트태그', // 없앨 듯
         title: this.reviewForm.value.title,
         content: this.reviewForm.value.content,
 
         // 강의 정보
         lectureName: this.lectureForm.value.lectureName,
         professor: this.lectureForm.value.professor,
-        classNumber: this.lectureForm.value.classNumber,
-        lectureYear: this.lectureForm.value.lectureYear,
+        classNumber: Number(this.lectureForm.value.classNumber),
+        lectureYear: Number(this.lectureForm.value.lectureYear),
         semester: this.lectureForm.value.semester,
         hasMidterm: this.hasMidterm,
         hasFinalterm: this.hasFinalterm,
@@ -106,14 +109,16 @@ export class PostComponent {
         isPF: this.lectureForm.value.isPF,
 
         // 파일 정보
-        filePath: 'this.file',
+        filePath: null,
         fileName: this.fileName,
       };
 
 
-      // this.globalService.dalService.reviewHttp.create(reviewData).subscribe((response: IReviewCreateResponse) => {
-      //   console.log('리뷰 작성 성공', response);
-      // });
+      console.log('reviewData', reviewData);
+      this.globalService.dalService.reviewHttp.create(reviewData).subscribe((response: IReviewCreateResponse) => {
+        console.log('리뷰 작성 성공', response);
+        this.router.navigateByUrl(`/file/${response.result.postId}`);
+      });
     }
     else {
       this.globalService.httpService.snackBar('입력하지 않은 필드가 있습니다. 모두 입력 후, 제출해 주세요');
